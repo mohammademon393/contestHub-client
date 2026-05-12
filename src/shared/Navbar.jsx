@@ -1,14 +1,59 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router';
-import logo from '../assets/logo.png';
+import Logo from '../components/Logo';
+import {
+  FaHome,
+  FaTrophy,
+  FaMedal,
+  FaInfoCircle,
+  FaSignInAlt,
+  FaUserPlus,
+} from "react-icons/fa";
+import { IoCall } from 'react-icons/io5';
 
 const Navbar = () => {
 
-    const links = <>
-        <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/contests">All Contests</NavLink></li>
-        <li><NavLink to="/about">About</NavLink></li>
-    </>
+    const navClass = ({ isActive }) =>
+      isActive
+        ? "text-primary font-medium"
+        : "hover:text-primary hover:underline";
+
+        const links = (
+          <>
+            <li>
+              <NavLink to="/" className={navClass}>
+                <FaHome />
+                Home
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink to="/contests" className={navClass}>
+                <FaTrophy />
+                All Contests
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink to="/leaderboard" className={navClass}>
+                <FaMedal />
+                Leaderboard
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/about" className={navClass}>
+                <FaInfoCircle />
+                About Us
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/contact" className={navClass}>
+                <IoCall />
+                Contact
+              </NavLink>
+            </li>
+          </>
+        );
 
     return (
       <div className="navbar bg-base-100 shadow-sm">
@@ -39,20 +84,19 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to="/" className="text-2xl font-bold cursor-pointer flex items-center">
-            <img src={logo} alt="ContestHub Logo" className="w-16 h-16" />
-            <h2 className="-ml-4">
-              Contest<span className="text-primary">Hub</span>
-            </h2>
+            <Logo></Logo>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <Link to="/register" className="btn btn-primary">
+          <Link to="/register" className="btn btn-primary btn-outline">
+            <FaUserPlus/>
             Register
           </Link>
-          <Link to="/login" className="btn btn-secondary ml-2">
+          <Link to="/login" className="btn btn-primary ml-2 text-white">
+            <FaSignInAlt></FaSignInAlt>
             Login
           </Link>
         </div>

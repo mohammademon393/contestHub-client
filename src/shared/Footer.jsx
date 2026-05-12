@@ -1,10 +1,11 @@
 import { FaFacebookF, FaLinkedinIn, FaTrophy } from "react-icons/fa";
 import { Link } from "react-router"; 
 import logo from "../assets/logo.png";
+import Logo from "../components/Logo";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white border-t border-base-300 mt-20">
+    <footer className="bg-neutral-800 text-white border-t border-base-300 mt-20">
       <div className="max-w-7xl mx-auto px-6 py-14">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -15,10 +16,7 @@ const Footer = () => {
               className="flex items-center gap-1 text-3xl font-extrabold"
             >
               {/* Ami trophy icon ta primary color e rakhlam, eta ekta clean look dey */}
-              <img src={logo} alt="ContestHub Logo" className="w-16 h-16" />
-              <span>
-                Contest<span className="text-primary">Hub</span>
-              </span>
+              <Logo></Logo>
             </Link>
 
             <p className="mt-4 text-gray-400 leading-relaxed">
@@ -77,7 +75,7 @@ const Footer = () => {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noreferrer" // Security-r jonno eta add kora bhalo
-                className="w-11 h-11 rounded-full bg-primary text-white flex items-center justify-center hover:scale-110 transition duration-300 shadow-lg"
+                className="w-11 h-11 rounded-full bg-blue-700 text-white flex items-center justify-center hover:scale-110 transition duration-300 shadow-lg"
               >
                 <FaFacebookF size={18} />
               </a>
@@ -86,7 +84,7 @@ const Footer = () => {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-11 h-11 rounded-full bg-primary text-white flex items-center justify-center hover:scale-110 transition duration-300 shadow-lg"
+                className="w-11 h-11 rounded-full bg-blue-700 text-white flex items-center justify-center hover:scale-110 transition duration-300 shadow-lg"
               >
                 <FaLinkedinIn size={18} />
               </a>
