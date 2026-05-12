@@ -15,7 +15,6 @@ const Footer = () => {
               to="/"
               className="flex items-center gap-1 text-3xl font-extrabold"
             >
-              {/* Ami trophy icon ta primary color e rakhlam, eta ekta clean look dey */}
               <Logo></Logo>
             </Link>
 
