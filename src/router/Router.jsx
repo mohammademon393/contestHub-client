@@ -3,6 +3,9 @@ import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home/Home";
 import AllContests from "../pages/allContests/AllContests";
 import Leaderboard from "../pages/leaderboard/Leaderboard";
+import AuthLayout from "../layouts/AuthLayout";
+import Login from "../pages/auth/Login";
+import Register from "../pages/auth/Register";
 
 
 const router = createBrowserRouter([
@@ -35,6 +38,23 @@ const router = createBrowserRouter([
   },
 
   // others layouts here
+
+
+  // auth layout
+  {
+    path: "/",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "/login",
+        Component: Login,
+      },
+      {
+        path: "/register",
+        Component: Register,
+      },
+    ],
+  },
 ]);
 
 export default router;
