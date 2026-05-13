@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router';
-import Logo from '../components/Logo';
+import Logo from '../components/logo/Logo';
 import {
   FaHome,
   FaTrophy,
