@@ -15,8 +15,8 @@ const Navbar = () => {
 
     const navClass = ({ isActive }) =>
       isActive
-        ? "text-primary font-medium"
-        : "hover:text-primary hover:underline";
+        ? "text-primary font-medium bg-primary rounded-2xl text-white px-4"
+        : "hover:text-primary hover:underline hover:rounded-2xl";
 
         const links = (
           <>
@@ -78,7 +78,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow gap-1"
             >
               {links}
             </ul>
@@ -88,14 +88,14 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
+          <ul className="menu menu-horizontal px-1 gap-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <Link to="/register" className="btn btn-primary btn-outline">
+          <Link to="/register" className="btn btn-primary btn-outline hidden md:inline-flex">
             <FaUserPlus/>
             Register
           </Link>
-          <Link to="/login" className="btn btn-primary ml-2 text-white">
+          <Link to="/login" className="btn btn-primary ml-2 text-white hover:bg-purple-700">
             <FaSignInAlt></FaSignInAlt>
             Login
           </Link>
