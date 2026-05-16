@@ -23,7 +23,7 @@ const Login = () => {
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
           <h2 className="text-2xl font-bold">
-            Welcome back <span className="text-primary">Contest</span>Hub!
+            Welcome back <span className="text-secondary">Contest</span>Hub!
           </h2>
           <p className="text-sm text-gray-500">
             Please login your account.
@@ -69,7 +69,7 @@ const Login = () => {
                 </span>
               )}
 
-              <button className="btn btn-neutral mt-4 mr-4">Sign In</button>
+              <button className="btn btn-secondary mt-4 mr-4">Sign In</button>
             </fieldset>
           </form>
           <div className="divider -my-0.5 mr-4">OR</div>
@@ -81,9 +81,9 @@ const Login = () => {
             You don't have an account?{" "}
             <a
               href="/register"
-              className="link link-hover font-semibold text-primary"
+              className="link link-hover font-semibold text-secondary"
             >
-              Register now!
+              Create Account!
             </a>
           </p>
         </div>

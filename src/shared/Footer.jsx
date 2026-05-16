@@ -1,11 +1,10 @@
-import { FaFacebookF, FaLinkedinIn, FaTrophy } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { Link } from "react-router"; 
-import logo from "../assets/logo.png";
-import Logo from "../components/logo/Logo";
+import Logo from "../components/Logo";
 
 const Footer = () => {
   return (
-    <footer className="bg-neutral-800 text-white border-t border-base-300 mt-20">
+    <footer className="bg-gray-800 text-white border-t border-base-300 mt-20">
       <div className="max-w-7xl mx-auto px-6 py-14">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">

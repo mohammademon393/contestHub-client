@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
-import Logo from "../components/logo/Logo";
+import Logo from "../components/Logo";
 import {
   FaHome,
   FaTrophy,
@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { IoCall } from "react-icons/io5";
 import useAuth from "../hooks/useAuth";
+import ThemeToggle from "../components/ThemeToggle";
 
 const Navbar = () => {
   const {logOut, user} = useAuth();
@@ -70,7 +71,6 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-base-100 shadow-sm">
-
       {/* navbar start content */}
       <div className="navbar-start">
         <div className="dropdown">
@@ -113,29 +113,34 @@ const Navbar = () => {
 
       {/* navbar end content */}
       <div className="navbar-end">
-        {
-          user ? 
+        {/* Theme Toggle */}
+        <ThemeToggle />
+
+        {user ? (
           <button
-          onClick={handleSignOut}
-           className="btn btn-primary hover:bg-purple-700">Sign out</button>
-          : 
+            onClick={handleSignOut}
+            className="btn btn-primary hover:bg-purple-700"
+          >
+            Sign out
+          </button>
+        ) : (
           <div>
             <Link
-          to="/register"
-          className="btn btn-primary btn-outline hidden md:inline-flex"
-        >
-          <FaUserPlus />
-          Register
-        </Link>
-        <Link
-          to="/login"
-          className="btn btn-primary ml-2 text-white hover:bg-purple-700"
-        >
-          <FaSignInAlt></FaSignInAlt>
-          Login
-        </Link>
-          </div> 
-        }
+              to="/register"
+              className="btn btn-primary btn-outline hidden md:inline-flex"
+            >
+              <FaUserPlus />
+              Register
+            </Link>
+            <Link
+              to="/login"
+              className="btn btn-primary ml-2 text-white hover:bg-purple-700"
+            >
+              <FaSignInAlt></FaSignInAlt>
+              Login
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
