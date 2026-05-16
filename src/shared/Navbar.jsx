@@ -1,6 +1,11 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
+
 import Logo from "../components/Logo";
+import ThemeToggle from "../components/ThemeToggle";
+
+import useAuth from "../hooks/useAuth";
+
 import {
   FaHome,
   FaTrophy,
@@ -8,30 +13,32 @@ import {
   FaInfoCircle,
   FaSignInAlt,
   FaUserPlus,
+  FaUserCircle,
+  FaTachometerAlt,
+  FaSignOutAlt,
 } from "react-icons/fa";
+
 import { IoCall } from "react-icons/io5";
-import useAuth from "../hooks/useAuth";
-import ThemeToggle from "../components/ThemeToggle";
 
 const Navbar = () => {
-  const {logOut, user} = useAuth();
+  const { logOut, user } = useAuth();
 
-  // sign out function 
-  const handleSignOut = () =>{
+  // sign out function
+  const handleSignOut = () => {
     logOut()
-    .then()
-    .catch(error =>{
-      console.error(error);
-    })
-  }
+      .then(() => {})
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
-  // function to set active class for nav links
+  // active nav link class
   const navClass = ({ isActive }) =>
-    isActive
-      ? "text-primary font-medium bg-primary rounded-2xl text-white px-4"
-      : "hover:text-primary hover:underline hover:rounded-2xl";
+    `flex items-center gap-2 px-4 py-2 rounded-2xl transition duration-300 ${
+      isActive ? "bg-primary text-white font-medium" : "hover:text-primary"
+    }`;
 
-  // common links for both desktop and mobile
+  // common nav links
   const links = (
     <>
       <li>
@@ -54,12 +61,14 @@ const Navbar = () => {
           Leaderboard
         </NavLink>
       </li>
+
       <li>
         <NavLink to="/about" className={navClass}>
           <FaInfoCircle />
           About Us
         </NavLink>
       </li>
+
       <li>
         <NavLink to="/contact" className={navClass}>
           <IoCall />
@@ -70,77 +79,132 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-sm">
-      {/* navbar start content */}
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+    <div className="sticky top-0 z-50 bg-base-100 shadow-sm">
+      <div className="navbar max-w-7xl mx-auto px-4">
+        {/* navbar start */}
+        <div className="navbar-start">
+          {/* mobile dropdown */}
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-56 gap-1"
             >
-              {" "}
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
-            </svg>
+              {links}
+            </ul>
           </div>
-          <ul
-            tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow gap-1"
-          >
-            {links}
-          </ul>
+
+          {/* logo */}
+          <Link to="/" className="text-2xl font-bold flex items-center">
+            <Logo />
+          </Link>
         </div>
-        <Link
-          to="/"
-          className="text-2xl font-bold cursor-pointer flex items-center"
-        >
-          <Logo></Logo>
-        </Link>
-      </div>
 
-      {/* navbar center content */}
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-1">{links}</ul>
-      </div>
+        {/* navbar center */}
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 gap-1">{links}</ul>
+        </div>
 
-      {/* navbar end content */}
-      <div className="navbar-end">
-        {/* Theme Toggle */}
-        <ThemeToggle />
+        {/* navbar end */}
+        <div className="navbar-end gap-2">
+          {/* theme toggle */}
+          <ThemeToggle />
 
-        {user ? (
-          <button
-            onClick={handleSignOut}
-            className="btn btn-primary hover:bg-purple-700"
-          >
-            Sign out
-          </button>
-        ) : (
-          <div>
-            <Link
-              to="/register"
-              className="btn btn-primary btn-outline hidden md:inline-flex"
-            >
-              <FaUserPlus />
-              Register
-            </Link>
-            <Link
-              to="/login"
-              className="btn btn-primary ml-2 text-white hover:bg-purple-700"
-            >
-              <FaSignInAlt></FaSignInAlt>
-              Login
-            </Link>
-          </div>
-        )}
+          {user ? (
+            <div className="dropdown dropdown-end">
+              {/* avatar button */}
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full border-2 border-primary">
+                  <img
+                    src={
+                      user?.photoURL ||
+                      "https://i.ibb.co.com/4pDNDk1/avatar.png"
+                    }
+                    alt="user profile"
+                  />
+                </div>
+              </div>
+
+              {/* dropdown menu */}
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow bg-base-100 rounded-box w-60"
+              >
+                {/* user info */}
+                <div className="border-b pb-2 mb-2">
+                  <h2 className="font-bold text-base">
+                    {user?.displayName || "User"}
+                  </h2>
+
+                  <p className="text-sm text-gray-500 truncate">
+                    {user?.email}
+                  </p>
+                </div>
+
+                {/* dashboard */}
+                <li>
+                  <Link to="/dashboard">
+                    <FaTachometerAlt />
+                    Dashboard
+                  </Link>
+                </li>
+
+                {/* profile */}
+                <li>
+                  <Link to="/profile">
+                    <FaUserCircle />
+                    My Profile
+                  </Link>
+                </li>
+
+                {/* logout */}
+                <li>
+                  <button onClick={handleSignOut}>
+                    <FaSignOutAlt />
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              {/* register */}
+              <Link
+                to="/register"
+                className="btn btn-outline btn-primary hidden md:flex"
+              >
+                <FaUserPlus />
+                Register
+              </Link>
+
+              {/* login */}
+              <Link to="/login" className="btn btn-primary text-white">
+                <FaSignInAlt />
+                Login
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
